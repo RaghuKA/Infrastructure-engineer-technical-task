@@ -29,17 +29,17 @@ jobs:
         run: gcloud auth configure-docker
 
       - name: Install dependencies and build TypeScript app
-        working-directory: appplication/
+        working-directory: ./appplication/
         run: |
           npm install
           npm run build
 
       - name: Build Docker image
-        working-directory: appplication/
+        working-directory: ./appplication/
         run: docker build -t $IMAGE .
 
       - name: Push Docker image to Google Artifact Registry
-        working-directory: appplication/
+        working-directory: ./appplication/
         run: docker push $IMAGE
 
       - name: Get GKE cluster credentials
